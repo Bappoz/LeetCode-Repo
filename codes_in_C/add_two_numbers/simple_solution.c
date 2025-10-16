@@ -21,8 +21,8 @@ long long int sumList(int *v1, int *v2, int tamanho1, int tamanho2){
 
 int main(){
 
-    int v1[101] = {9, 9, 9, 9, 9, 9, 9};
-    int v2[101] = {9, 9, 9, 9};
+    int v1[101] = {1, 2, 3};
+    int v2[101] = {1, 0 , 0};
 
     int tamanho_util_v1 = 7;
     int tamanho_util_v2 = 4;
@@ -32,3 +32,4 @@ int main(){
     
     return 0;
 }   
+
