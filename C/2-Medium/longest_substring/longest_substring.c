@@ -38,7 +38,6 @@ int lengthOfLongestSubstring(char* s){
         for(int j = i; j < strlen(s); j++){
             if (seen[s[j]]) break;
             // EX: seen['a'] = seen[97] ==> Valor em ASCII 
-            //                              convertido automaticamente em C
             seen[s[j]] = 1;
             contador++;
         }
@@ -62,10 +61,3 @@ int main(){
 
     return 0;
 }
-
-/*
-            abcabcbb
-
-            1
-
-*/
