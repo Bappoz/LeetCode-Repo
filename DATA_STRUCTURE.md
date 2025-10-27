@@ -1,31 +1,29 @@
 # Tabela Teórica: Métodos e Formas de Resolução para Problemas Específicos de Estruturas de Dados
 
-Esta tabela apresenta uma visão teórica de **métodos e estruturas de dados** para resolver problemas específicos, focando em algoritmos eficientes. Cada problema inclui múltiplas abordagens (ex.: brute force, otimizada), com ênfase em complexidade de tempo/espaço e estruturas usadas (ex.: arrays, hash maps, stacks). O vetor booleano `seen[]` é apenas um exemplo de método (usado em sliding window para unicidade). Use isso para fixar conceitos de resolução de problemas.
+Esta tabela apresenta uma visão teórica de **métodos e estruturas de dados** para resolver problemas específicos, focando em algoritmos eficientes. 
 
-| Problema Específico | Métodos/Formas de Resolução | Descrição Teórica (Estruturas de Dados e Complexidade) | Exemplo |
-|---------------------|-----------------------------|-------------------------------------------------------|---------|
-| **Longest Substring Without Repeating Characters** | 1. Brute Force (Nested Loops) | Verifica todas as substrings possíveis com um set temporário. Complexidade: O(n^3) tempo (devido a verificações lineares), O(min(n, m)) espaço (set). Ineficiente para n grande. | Para `"abcabcbb"`, testa substrings como `"abc"` (3). |
-| | 2. Sliding Window com HashSet | Usa janela deslizante com set para rastrear caracteres únicos. Move ponteiro direito, remove duplicatas movendo esquerdo. Complexidade: O(n) tempo, O(min(n, m)) espaço. | Expande janela até duplicata, atualiza máximo. |
-| | 3. Sliding Window com Array Booleano (`seen[]`) | Array fixo (ex.: `seen[256]`) para marcar presença (0/1). Resetado por substring ou janela. Complexidade: O(n) tempo, O(1) espaço (ASCII). | Marca `seen['a'] = 1`, detecta duplicata em O(1). |
-| | 4. Sliding Window com HashMap (Contagem) | Mapa para índices de última ocorrência. Move esquerdo baseado em duplicatas. Complexidade: O(n) tempo, O(min(n, m)) espaço. | Para Unicode, usa mapa dinâmico. |
-| **Longest Palindromic Substring** | 1. Brute Force (Expandir de Cada Centro) | Para cada centro possível, expande enquanto palíndromo. Complexidade: O(n^2) tempo, O(1) espaço. | Para `"babad"`, centros em 'a' ou 'b', encontra `"bab"`. |
-| | 2. Dynamic Programming (DP Table) | Tabela 2D `dp[i][j]` para substrings palindrômicas. Complexidade: O(n^2) tempo, O(n^2) espaço. | Marca diagonais, expande se caracteres iguais. |
-| | 3. Manacher's Algorithm | Algoritmo otimizado com expansão simétrica e array de raios. Complexidade: O(n) tempo, O(n) espaço. | Usa transformação para lidar com centros pares/ímpares. |
-| **Two Sum** | 1. Brute Force (Nested Loops) | Verifica todos os pares. Complexidade: O(n^2) tempo, O(1) espaço. | Para `[2,7,11,15]`, encontra 9=2+7. |
-| | 2. HashMap (One-Pass) | Mapeia valores para índices, verifica complemento em O(1). Complexidade: O(n) tempo, O(n) espaço. | Para cada num, checa se `target - num` existe no mapa. |
-| | 3. Sort + Two Pointers | Ordena array, usa ponteiros para somar. Complexidade: O(n log n) tempo, O(1) espaço (se permitido modificar). | Move ponteiros baseado na soma. |
-| **Valid Parentheses** | 1. Stack (Pilha) | Empilha aberturas, desempilha fechamentos. Complexidade: O(n) tempo, O(n) espaço. | Para `"()[]{}"`, stack vazio no fim. |
-| | 2. Counter (Contador) | Conta aberturas/fechamentos, mas falha em ordem (ex.: `"(]"`). Complexidade: O(n) tempo, O(1) espaço. | Só para casos simples. |
-| **Merge Intervals** | 1. Sort + Merge | Ordena intervalos, mescla sobrepostos. Complexidade: O(n log n) tempo, O(n) espaço. | Para `[[1,3],[2,6]]`, resulta em `[1,6]`. |
-| | 2. Sweep Line (Linha de Varredura) | Usa eventos para início/fim, conta ativos. Complexidade: O(n log n) tempo, O(n) espaço. | Para contagem de sobreposições. |
-| **Climbing Stairs (DP Básico)** | 1. Recursão com Memoization | Armazena resultados em array/map. Complexidade: O(n) tempo, O(n) espaço. | Para n=3, caminhos: 1+1+1, 1+2, 2+1. |
-| | 2. Bottom-Up DP (Iterativo) | Array `dp[i]` para passos. Complexidade: O(n) tempo, O(n) espaço (otimizável para O(1)). | `dp[i] = dp[i-1] + dp[i-2]`. |
-| | 3. Fibonacci Closed-Form | Fórmula matemática. Complexidade: O(1) tempo, O(1) espaço. | Usa constantes de Fibonacci. |
+| 💡 Tipo de Problema                                 | 🧱 Estrutura de Dados Indicada                     | ⚙️ Lógica / Algoritmo Aplicável                   | 📝 Exemplos de Aplicação                      |
+| --------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------- | --------------------------------------------- |
+| Busca em coleção de dados                           | Vetor, Lista Encadeada, Árvore Binária, Hash Table | Busca linear, binária ou hashing                  | Buscar um usuário em uma base de dados        |
+| Ordenação de valores                                | Vetor, Lista                                       | Bubble Sort, QuickSort, MergeSort, Insertion Sort | Ordenar notas, nomes, preços                  |
+| Evitar duplicatas / contagem de frequência          | Hash Table, Set (Conjunto)                         | Hashing + contagem                                | Contar palavras únicas em um texto            |
+| Fila de tarefas ou requisições                      | Fila (Queue)                                       | FIFO (First-In, First-Out)                        | Impressão, chamadas em espera                 |
+| Controle de desfazer/refazer ações                  | Pilha (Stack)                                      | LIFO (Last-In, First-Out)                         | Ctrl+Z, navegação entre páginas               |
+| Verificação de expressões matemáticas ou parênteses | Pilha (Stack)                                      | Push/Pop conforme símbolos                        | Compiladores, validadores de expressões       |
+| Caminhos mínimos em mapas ou redes                  | Grafo (Graph)                                      | Dijkstra, BFS, DFS, A*                            | GPS, redes sociais, IA em jogos               |
+| Hierarquia e dependências                           | Árvore (Tree)                                      | Percursos (preorder, inorder, postorder)          | Estrutura de pastas, organogramas             |
+| Agendamento e prioridades                           | Fila de prioridade (Heap)                          | Heap Sort, Min/Max Heap                           | Processos do sistema operacional              |
+| Simulação de fila de atendimento                    | Fila Circular ou Queue                             | Enfileirar e desenfileirar                        | Caixa de supermercado, sistema de senhas      |
+| Associação chave-valor                              | Dicionário / Hash Table                            | Função hash + colisão                             | Tabelas de configuração, cache                |
+| Detecção de ciclos                                  | Grafo                                              | DFS com marcação de visitados                     | Dependências circulares, deadlocks            |
+| Compressão de dados                                 | Árvore de Huffman                                  | Algoritmo de Huffman                              | Compressão de arquivos (ZIP)                  |
+| Recomendações ou agrupamentos                       | Lista, Vetor, Árvore, Grafo                        | Algoritmos de busca ou similaridade               | Sistemas de recomendação (Netflix, Spotify)   |
+| Simulação de tabuleiros / grids                     | Matriz (2D Array)                                  | Percurso com laços aninhados                      | Jogos (Pac-Man, A*), processamento de imagens |
+| Controle de versões / histórico                     | Lista Duplamente Encadeada                         | Inserção, remoção, iteração bidirecional          | Editor de texto, git log                      |
+| Busca de padrões em texto                           | Vetor / String                                     | KMP, Rabin-Karp, força bruta                      | Buscar palavra em documento                   |
+| Armazenamento ordenado e busca eficiente            | Árvore Balanceada (AVL, Red-Black)                 | Inserção/remoção balanceada                       | Bancos de dados, índices de pesquisa          |
+| Processamento de tarefas assíncronas                | Fila + Thread Pool                                 | Produção e consumo (produtor/consumidor)          | Sistemas paralelos, servidores                |
+| Backtracking e exploração de soluções               | Pilha ou Recursão                                  | DFS + retrocesso                                  | Sudoku, labirintos, IA                        |
 
-### Explicação Teórica Geral
-- **Estruturas de Dados Chave**: Arrays (fixos/dinâmicos), HashMaps/Sets (para lookups O(1)), Stacks (para ordem/LIFO), Queues (para BFS), Trees/Heaps (para prioridades).
-- **Padrões de Algoritmos**: Brute Force (simples, ineficiente), Greedy (escolhas locais ótimas), Divide & Conquer (recursão), Dynamic Programming (subproblemas), Sliding Window (janelas móveis), Two Pointers (dois índices).
-- **Escolha de Método**: Depende de constraints (tempo/espaço). Otimize para O(n) onde possível, usando estruturas auxiliares.
-- **Fixação**: Para cada problema, pense: "Qual estrutura rastreia o estado necessário?" (ex.: `seen[]` para unicidade).
 
 Essa tabela cobre métodos para problemas comuns. Se quiser expandir para um problema específico ou adicionar mais, diga!
