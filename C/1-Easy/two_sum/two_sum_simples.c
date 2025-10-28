@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Dont Forget => Vetores de inteiros não tem \n no final!!
 
 int* twoSum(int* nums, int numsSize, int target, int* returnSize){
     *returnSize = 0;
