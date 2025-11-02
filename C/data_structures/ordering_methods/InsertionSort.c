@@ -18,22 +18,17 @@
 #include <stdlib.h>
 
 
-void swap(int* a, int* b){
-    int tmp = *a;
-    *a = *b;
-    *b = tmp;
-}
-
-void inserction_sort(int* vetor, int n){
-
-    for(size_t i = 1; i < n; i++){
-        int j = i;
-        while(j > 0 && vetor[j] < vetor[j-1]){
-            swap(&vetor[j], &vetor[j-1]);
+void insertion_sort(int *array, int n){
+    
+    for(int i = 1; i < n; i++){
+        int tmp = array[i];
+        int j = i - 1;
+        while(j >= 0 && array[j] > tmp){
+            array[j + 1] = array[j];
             j--;
         }
-    }
-
+        array[j+1] = tmp;
+    }    
 }
 
 
